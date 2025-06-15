@@ -1,0 +1,7 @@
+# @usage
+# cp config.example.yml config.yml
+
+twitch:
+  client_id:
+  client_secret:
+  redirect_uri: "http://localhost"
