@@ -8,8 +8,13 @@ import (
 	"github.com/nicklaw5/helix/v2"
 )
 
+type GetArchivesParams struct {
+	StartAt *time.Time
+	EndAt   *time.Time
+}
+
 // GetArchives アーカイブ動画を取得する
-func (u *UseCase) GetArchives(ctx context.Context) ([]helix.Video, error) {
+func (u *UseCase) GetArchives(ctx context.Context, p GetArchivesParams) ([]helix.Video, error) {
 	// ログインユーザの取得
 	user, err := u.twitchClient.GetAuthenticatedUser(ctx)
 	if err != nil {
@@ -26,12 +31,7 @@ func (u *UseCase) GetArchives(ctx context.Context) ([]helix.Video, error) {
 	}
 
 	// 昨日分のアーカイブ動画を取得
-	var (
-		now            = time.Now().UTC()
-		yesterdayStart = time.Date(now.Year(), now.Month(), now.Day()-1, 0, 0, 0, 0, time.UTC)
-		yesterdayEnd   = yesterdayStart.Add(24 * time.Hour)
-		filteredVideos = make([]helix.Video, 0)
-	)
+	var filteredVideos = make([]helix.Video, 0)
 	for _, followed := range follows {
 		videos, err := u.twitchClient.GetArchiveVideos(ctx, followed.BroadcasterID)
 		if err != nil {
@@ -43,7 +43,22 @@ func (u *UseCase) GetArchives(ctx context.Context) ([]helix.Video, error) {
 			if err != nil {
 				continue
 			}
-			if createdAt.After(yesterdayStart) && createdAt.Before(yesterdayEnd) {
+			if p.StartAt != nil && p.EndAt != nil {
+				// 開始日と終了日が NULL ではない場合
+				if createdAt.After(*p.StartAt) && createdAt.Before(*p.EndAt) {
+					filteredVideos = append(filteredVideos, video)
+				}
+			} else if p.StartAt != nil {
+				// 開始日のみ NULL ではない場合
+				if createdAt.After(*p.StartAt) {
+					filteredVideos = append(filteredVideos, video)
+				}
+			} else if p.EndAt != nil {
+				// 終了日のみ NULL ではない場合
+				if createdAt.Before(*p.EndAt) {
+					filteredVideos = append(filteredVideos, video)
+				}
+			} else {
 				filteredVideos = append(filteredVideos, video)
 			}
 		}

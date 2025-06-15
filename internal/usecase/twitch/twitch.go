@@ -7,8 +7,8 @@ import (
 	"os"
 	"strings"
 
-	"example.com/internal/adapter/twitch"
-	"example.com/internal/config"
+	"github.com/qli8racn/twitch-archive/internal/adapter/twitch"
+	"github.com/qli8racn/twitch-archive/internal/config"
 )
 
 // OAuth ユーザ認証の実行（アクセストークンの取得）
