@@ -62,24 +62,24 @@ func (c *Client) GetArchiveVideos(ctx context.Context, userID string) ([]helix.V
 }
 
 type Client struct {
-    sdk *helix.Client
+	sdk *helix.Client
 }
 
 func New(cfg *config.Config) (twitch.Client, error) {
 	client, err := helix.NewClient(&helix.Options{
-        ClientID:     cfg.Twitch.ClientID,
-        ClientSecret: cfg.Twitch.ClientSecret,
-        RedirectURI:  cfg.Twitch.RedirectURI,
-    })
-    if err != nil {
-        return nil, err
-    }
+		ClientID:     cfg.Twitch.ClientID,
+		ClientSecret: cfg.Twitch.ClientSecret,
+		RedirectURI:  cfg.Twitch.RedirectURI,
+	})
+	if err != nil {
+		return nil, err
+	}
 
-    resp, err := client.RequestAppAccessToken([]string{})
-    if err != nil {
-        return nil, err
-    }
-    client.SetAppAccessToken(resp.Data.AccessToken)
+	resp, err := client.RequestAppAccessToken([]string{})
+	if err != nil {
+		return nil, err
+	}
+	client.SetAppAccessToken(resp.Data.AccessToken)
 
-    return &Client{sdk: client}, nil
+	return &Client{sdk: client}, nil
 }

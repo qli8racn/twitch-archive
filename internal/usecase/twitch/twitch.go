@@ -26,12 +26,12 @@ func (c *UseCase) OAuth(ctx context.Context) error {
 	code := strings.TrimSpace(scanner.Text())
 	if err := c.twitchClient.ExchangeCodeForToken(ctx, code); err != nil {
 		return err
-	}	
+	}
 	return nil
 }
 
 type UseCase struct {
-	cfg 		 *config.Config
+	cfg          *config.Config
 	twitchClient twitch.Client
 }
 

@@ -27,10 +27,10 @@ func (u *UseCase) GetArchives(ctx context.Context) ([]helix.Video, error) {
 
 	// 昨日分のアーカイブ動画を取得
 	var (
-		now 			= time.Now().UTC()
-		yesterdayStart 	= time.Date(now.Year(), now.Month(), now.Day()-1, 0, 0, 0, 0, time.UTC)
-		yesterdayEnd 	= yesterdayStart.Add(24 * time.Hour)
-		filteredVideos 	= make([]helix.Video, 0)
+		now            = time.Now().UTC()
+		yesterdayStart = time.Date(now.Year(), now.Month(), now.Day()-1, 0, 0, 0, 0, time.UTC)
+		yesterdayEnd   = yesterdayStart.Add(24 * time.Hour)
+		filteredVideos = make([]helix.Video, 0)
 	)
 	for _, followed := range follows {
 		videos, err := u.twitchClient.GetArchiveVideos(ctx, followed.BroadcasterID)
