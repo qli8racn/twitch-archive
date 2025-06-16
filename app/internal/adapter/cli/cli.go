@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/qli8racn/twitch-archive/internal/usecase/twitch"
+	"github.com/qli8racn/twitch-archive/app/internal/usecase/twitch"
 )
 
 type InputParams struct {

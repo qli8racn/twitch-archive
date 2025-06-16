@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/qli8racn/twitch-archive/internal/adapter/cli"
-	"github.com/qli8racn/twitch-archive/internal/config"
-	twitchImpl "github.com/qli8racn/twitch-archive/internal/driver/twitch"
-	twitchUseCase "github.com/qli8racn/twitch-archive/internal/usecase/twitch"
-	validatorPkg "github.com/qli8racn/twitch-archive/pkg/validator"
+	"github.com/qli8racn/twitch-archive/app/internal/adapter/cli"
+	"github.com/qli8racn/twitch-archive/app/internal/config"
+	twitchImpl "github.com/qli8racn/twitch-archive/app/internal/driver/twitch"
+	twitchUseCase "github.com/qli8racn/twitch-archive/app/internal/usecase/twitch"
+	validatorPkg "github.com/qli8racn/twitch-archive/app/pkg/validator"
 	"github.com/spf13/cobra"
 	"go.uber.org/dig"
 )

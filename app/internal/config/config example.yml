@@ -1,0 +1,14 @@
+# @usage
+# cp config.example.yml config.yml
+
+twitch:
+  client_id:
+  client_secret:
+  redirect_uri: "http://localhost"
+
+aws:
+  s3:
+    endpoint: "http://localhost:4566"
+    buckets:
+      twitch_archives:
+        bucket_name: "twitch-archives"

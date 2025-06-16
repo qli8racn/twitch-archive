@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/nicklaw5/helix/v2"
-	"github.com/qli8racn/twitch-archive/internal/adapter/twitch"
-	"github.com/qli8racn/twitch-archive/internal/config"
+	"github.com/qli8racn/twitch-archive/app/internal/adapter/twitch"
+	"github.com/qli8racn/twitch-archive/app/internal/config"
 )
 
 // GetAuthorizationURL 認可 URL を取得する

@@ -10,6 +10,16 @@ type Config struct {
 		ClientSecret string `mapstructure:"client_secret"`
 		RedirectURI  string `mapstructure:"redirect_uri"`
 	} `mapstructure:"twitch"`
+	AWS struct {
+		S3 struct {
+			Endpoint string `mapstructure:"endpoint"`
+			Buckets struct {
+				TwitchArchives struct {
+					BucketName string `mapstructure:"bucketName"`
+				} `mapstructure:"twitch_archives"`
+			} `mapstructure:"buckets"`
+		} `mapstructure:"s3"`
+	} `mapstructure:"aws"`
 }
 
 func New() (cfg *Config, err error) {

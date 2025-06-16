@@ -27,4 +27,9 @@ go.work
 # Config file
 config.yml
 
+# Docker volumes
+system/docker/**/volumes/*
+
 # End of https://www.toptal.com/developers/gitignore/api/go
+
+!.gitkeep
